@@ -1,0 +1,23 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Thu Aug 29 03:43:44 2024
+[*]
+[dumpfile] "/home/chip/projects/tinytapeout/munch/test/tb_lfsr.vcd"
+[dumpfile_mtime] "Thu Aug 29 03:42:52 2024"
+[dumpfile_size] 147098
+[savefile] "/home/chip/projects/tinytapeout/munch/test/tb_lfsr.gtkw"
+[timestart] 0
+[size] 1340 716
+[pos] -1 -1
+*-17.000000 96300 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 276
+[signals_width] 190
+[sst_expanded] 1
+[sst_vpaned_height] 198
+@28
+tb_lfsr.clk
+tb_lfsr.rst_n
+@23
+tb_lfsr.lfsr_bits[10:0]
+[pattern_trace] 1
+[pattern_trace] 0

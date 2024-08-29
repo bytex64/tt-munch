@@ -106,7 +106,7 @@ module text(
   } = str;
 
   chargen chargen(
-    .x(x + char_idx * 64),
+    .x(x + char_idx * 10'd64),
     .y(y),
     .character(str_chars[char_idx]),
     .hpos(hpos),
@@ -132,8 +132,8 @@ module text_sequencer(
   assign words[3] = {C_T, C_A, C_E, C_P, C_E, C_R};
 
   text text_gen(
-    .x(100),
-    .y(280),
+    .x(10'd100),
+    .y(10'd280),
     .str(words[selector]),
     .hpos(hpos),
     .vpos(vpos),
