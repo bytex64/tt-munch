@@ -31,12 +31,11 @@ VERILOG_SOURCES += $(PWD)/gate_level_netlist.v
 
 endif
 
-# Include the testbench sources:
-VERILOG_SOURCES += $(PWD)/tb.v
-TOPLEVEL = tb
+VERILOG_SOURCES += $(PWD)/tb_audio.v
+TOPLEVEL = tb_audio
 
 # MODULE is the basename of the Python test file
-MODULE = test
+MODULE = test_audio
 
 # include cocotb's make rules to take care of the simulator setup
 include $(shell cocotb-config --makefiles)/Makefile.sim

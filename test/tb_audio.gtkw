@@ -1,0 +1,57 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Wed Aug 28 06:34:28 2024
+[*]
+[dumpfile] "/home/chip/projects/tinytapeout/munch/test/tb_audio.vcd"
+[dumpfile_mtime] "Wed Aug 28 06:34:21 2024"
+[dumpfile_size] 904873
+[savefile] "/home/chip/projects/tinytapeout/munch/test/tb_audio.gtkw"
+[timestart] 0
+[size] 1709 842
+[pos] -1 -1
+*-38.000000 400000000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb_audio.
+[sst_width] 276
+[signals_width] 298
+[sst_expanded] 1
+[sst_vpaned_height] 242
+@28
+tb_audio.vsync
+tb_audio.rst_n
+tb_audio.clock_gen.audio_tick
+@22
+tb_audio.clock_gen.r_atick_clock[2:0]
+tb_audio.pattern_clock[3:0]
+@200
+-Sequencer
+@22
+tb_audio.seq.seq_clock[3:0]
+@200
+-Channel 0
+@24
+tb_audio.seq.freq0[11:0]
+tb_audio.seq.vol0[1:0]
+@200
+-Channel 1
+@24
+tb_audio.seq.freq1[11:0]
+tb_audio.seq.vol1[1:0]
+@200
+-Channel 2
+@24
+tb_audio.seq.freq2[11:0]
+tb_audio.seq.vol2[1:0]
+@200
+-Channel 3
+@24
+tb_audio.seq.freq3[11:0]
+tb_audio.seq.vol3[1:0]
+@200
+-Stage Sequencer
+@28
+tb_audio.stage_seq_inst.seq_clk
+@24
+tb_audio.stage_seq_inst.stage[1:0]
+tb_audio.stage_seq_inst.timer[3:0]
+[pattern_trace] 1
+[pattern_trace] 0

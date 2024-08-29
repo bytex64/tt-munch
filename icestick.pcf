@@ -1,0 +1,34 @@
+set_io port0[0] 112
+set_io port0[1] 113
+set_io port0[2] 114
+set_io port0[3] 115
+set_io port0[4] 116
+set_io port0[5] 117
+set_io port0[6] 118
+set_io port0[7] 119
+
+set_io port1[0] 78
+set_io port1[1] 79
+set_io port1[2] 80
+set_io port1[3] 81
+set_io port1[4] 87
+set_io port1[5] 88
+set_io port1[6] 90
+set_io port1[7] 91
+
+set_io port2[0] 44
+set_io port2[1] 45
+set_io port2[2] 47
+set_io port2[3] 48
+set_io port2[4] 56
+set_io port2[5] 60
+set_io port2[6] 61
+set_io port2[7] 62
+
+set_io leds[0] 99
+set_io leds[1] 98
+set_io leds[2] 97
+set_io leds[3] 96
+set_io leds[4] 95
+
+set_io clk 21
