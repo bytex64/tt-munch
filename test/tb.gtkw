@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
-[*] Thu Aug 29 04:46:09 2024
+[*] Thu Aug 29 06:05:28 2024
 [*]
 [dumpfile] "/home/chip/projects/tinytapeout/munch/test/tb.vcd"
-[dumpfile_mtime] "Thu Aug 29 04:39:17 2024"
-[dumpfile_size] 163326
+[dumpfile_mtime] "Thu Aug 29 06:02:53 2024"
+[dumpfile_size] 625482
 [savefile] "/home/chip/projects/tinytapeout/munch/test/tb.gtkw"
-[timestart] 0
+[timestart] 10000000
 [size] 1711 925
 [pos] -1 -1
-*-17.534531 120000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-16.534531 120000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] tb.
 [sst_width] 297
 [signals_width] 229

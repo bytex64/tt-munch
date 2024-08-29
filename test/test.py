@@ -11,7 +11,7 @@ async def reset(dut):
     dut.rst_n.value = 1
     await ClockCycles(dut.clk, 1);
     dut.rst_n.value = 0
-    await ClockCycles(dut.clk, 1);
+    await ClockCycles(dut.clk, 3);
     dut.rst_n.value = 1
 
 @cocotb.test()
@@ -28,10 +28,16 @@ async def test_munch(dut):
     clock = Clock(dut.clk, 40, units="ns")
     cocotb.start_soon(clock.start())
 
+    await Timer(5, "us")
+    dut.ena.value = 1
+    await Timer(5, "us")
+
     await reset(dut)
 
     dut._log.info("Test munch module")
 
+    # flops on hsync/vsync delay them by one cycle, so we wait
+    # two cycles here.
     await ClockCycles(dut.clk, 2)
     # Should be a black pixel at the beginning of scan
     assert dut.uo_out.value == 0b10001000
