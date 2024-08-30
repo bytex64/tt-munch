@@ -93,6 +93,7 @@ module tt_um_bytex64_munch (
   // Misc signals
   wire [5:0] lfsr;
   wire [1:0] stage;
+  wire [3:0] stage_timer;
 
   // State
   reg [6:0] counter;        // general 7-bit counter
@@ -169,23 +170,40 @@ module tt_um_bytex64_munch (
     .selector(pattern_clock[3:2]),
     .hpos(hpos),
     .vpos(vpos),
+    .stage(stage),
+    .stage_timer(stage_timer),
     .pixel(text_pixel)
   );
 
   stage_sequencer stage_seq_inst(
     .seq_clk(!pattern_clock[3]),
     .rst_n(rst_n),
-    .stage(stage)
+    .stage(stage),
+    .stage_timer(stage_timer)
   );
 
-  wire [2:0] munch_color = {1'b0, stage}; //stage == 0 ? 0 : (stage == 1 ? 2 : lfsr[2:0]);
+  reg [2:0] background_color;
+
+  wire [2:0] munch_color = stage == 0 ? 0 : (stage != 3 ? 2 : ~background_color);
+  wire [5:0] text_color = stage == 1 && pattern_clock[3:2] != 2'b10 ? palette[0] :
+    (stage == 3 && pattern_clock[3:2] == 2'b10 ? palette[5] & {3{bright[5]}} :
+      palette[7]);
 
   assign layer[0] = palette[munch_color] & {3{bright[munch_level]}};
   // color bars
   //assign layer[0] = palette[vpos[6:4]] & {3{bright[hpos[6:4]]}};
-  assign layer[1] = text_pixel ? palette[7] : 0;
+  assign layer[1] = text_pixel ? text_color : 0;
 
-  assign pixel_color = layer[1] != 0 ? layer[1] : layer[0];
+  assign pixel_color = layer[1] != 0 ? layer[1] :
+    (layer[0] != 0 ? layer[0] : palette[background_color]);
+
+  always @(negedge pattern_clock[1], negedge rst_n) begin
+    if (!rst_n)
+      background_color <= 0;
+    else
+      if (stage == 3)
+        background_color <= lfsr[2:0];
+  end
 
   always @(posedge vsync, negedge rst_n) begin
     if (!rst_n)
@@ -226,7 +244,8 @@ endmodule
 module stage_sequencer(
   input wire seq_clk,
   input wire rst_n,
-  output wire [1:0] stage
+  output wire [1:0] stage,
+  output wire [3:0] stage_timer
 );
   reg [3:0] timer;
   reg [1:0] stage_seq;
@@ -234,7 +253,7 @@ module stage_sequencer(
   wire [3:0] stage_timings [3:0];
 
   assign stage_timings[0] = 3;
-  assign stage_timings[1] = 7;
+  assign stage_timings[1] = 3;
   assign stage_timings[2] = 7;
   assign stage_timings[3] = 0;
 
@@ -256,5 +275,6 @@ module stage_sequencer(
   end
 
   assign stage = stage_seq;
+  assign stage_timer = timer;
 
 endmodule

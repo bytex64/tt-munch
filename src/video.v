@@ -31,7 +31,7 @@ module chargen(
   input wire [9:0] vpos,
   output wire pixel
 );
-  wire [9:0] charmap [11:0];
+  wire [9:0] charmap [14:0];
   wire [9:0] segments;
 
   /* digits 0-9
@@ -57,7 +57,10 @@ module chargen(
   assign charmap[8]  = 10'b0101110011;  // R
   assign charmap[9]  = 10'b0001101101;  // S
   assign charmap[10] = 10'b1000000001;  // T
-  assign charmap[11] = 10'b1000011111;  // V (U)
+  assign charmap[11] = 10'b0100100110;  // V
+  assign charmap[12] = 10'b1000001111;  // D
+  assign charmap[13] = 10'b0010110000;  // Y
+  assign charmap[14] = 10'b0000111111;  // O
 
   assign segments = charmap[character];
 
@@ -87,6 +90,9 @@ parameter C_R  = 4'd8;
 parameter C_S  = 4'd9;
 parameter C_T  = 4'd10;
 parameter C_V  = 4'd11;
+parameter C_D  = 4'd12;
+parameter C_Y  = 4'd13;
+parameter C_O  = 4'd14;
 
 module text(
   input wire [9:0] x,
@@ -121,20 +127,29 @@ module text_sequencer(
   input wire [1:0] selector,
   input wire [9:0] hpos,
   input wire [9:0] vpos,
+  input wire [1:0] stage,
+  input wire [3:0] stage_timer,
   output wire pixel
 );
 
-  wire [23:0] words [3:0];
+  wire [23:0] words [6:0];
+  wire [2:0] word_select;
 
   assign words[0] = {C_sp, C_sp, C_sp, C_T, C_A, C_E};
   assign words[1] = {C_sp, C_P, C_E, C_E, C_L, C_S};
   assign words[2] = {C_sp, C_sp, C_K, C_C, C_A, C_H};
   assign words[3] = {C_T, C_A, C_E, C_P, C_E, C_R};
+  assign words[4] = {C_sp, C_Y, C_D, C_A, C_E, C_R};
+  assign words[5] = {C_sp, C_sp, C_sp, C_sp, C_K, C_O};
+  assign words[6] = {C_sp, C_sp, C_E, C_V, C_A, C_R};
+
+  assign word_select = (stage > 0 ? {stage == 3 && selector == 2'd2, selector} :
+    (stage_timer != 0 ? 3'd4 : 3'd5));
 
   text text_gen(
     .x(10'd100),
     .y(10'd280),
-    .str(words[selector]),
+    .str(words[word_select]),
     .hpos(hpos),
     .vpos(vpos),
     .pixel(pixel)
