@@ -49,9 +49,9 @@ pinout:
   uio[1]: ""
   uio[2]: ""
   uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
+  uio[4]: "beat clock bit 1 (output)"
+  uio[5]: "beat clock bit 2 (output)"
+  uio[6]: "beat clock bit 3 (output)"
   uio[7]: "audio (output)"
 
 # Do not change!
